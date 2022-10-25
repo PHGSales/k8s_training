@@ -227,7 +227,7 @@ rbac:
 
 # Airflow executor
 # One of: LocalExecutor, LocalKubernetesExecutor, CeleryExecutor, KubernetesExecutor, CeleryKubernetesExecutor
-executor: "CeleryExecutor"
+executor: "KubernetesExecutor"
 
 # If this is true and using LocalExecutor/KubernetesExecutor/CeleryKubernetesExecutor, the scheduler's
 # service account will have access to communicate with the api-server and launch pods.
@@ -1564,7 +1564,7 @@ dags:
     ## optional subpath for dag volume mount
     subPath: ~
   gitSync:
-    enabled: false
+    enabled: true
     # git repo clone url
     # ssh examples ssh://git@github.com/apache/airflow.git
     # git@github.com:apache/airflow.git
@@ -1574,7 +1574,7 @@ dags:
     rev: HEAD
     depth: 1
     # the number of consecutive failures allowed before aborting
-    maxFailures: 0
+    maxFailures: 1
     # subpath within the repo where dags are located
     # should be "" if dags are at repo root
     subPath: src/airflow/dag
